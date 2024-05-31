@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <title>Blog Landing Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Alx-Blog</h1>
+        <p>Explore a world of captivating stories, informative articles, and engaging content.
+            Our blog covers a wide range of topics to keep you informed and entertained.</p>
+    </div>
+</body>
+{% endblock content %}
