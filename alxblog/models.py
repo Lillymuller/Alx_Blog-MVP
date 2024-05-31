@@ -1,8 +1,10 @@
-from datetime import datetime
+import jwt
+from datetime import datetime, timedelta
 from alxblog import db, app, login_manager
 from flask_login import UserMixin
-from flask import cli
+from flask import cli, request, jsonify
 from sqlalchemy.orm import sessionmaker
+from flask_mail import Message
 
 
 @login_manager.user_loader
@@ -17,6 +19,24 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+
+    def get_reset_token(self, expires_sec=1800):
+        payload = {'user_id': self.id}
+
+        encoded_jwt = jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')
+        return encoded_jwt
+    
+    @staticmethod
+    def verify_reset_token(token):
+        try:
+            decoded_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithm='HS256')
+            user_id = decoded_payload['user_id']
+            return jsonify({'user_id': user_id})
+        except jwt.ExpiredSignatureError:
+            return jsonify({'error': 'Token has expired'})
+        except (jwt.InvalidTokenError, jwt.DecodeError):
+            return jsonify({'error': 'Invalid token'})
+
     
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
