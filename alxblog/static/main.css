@@ -1,23 +1,28 @@
 body {
-    background: #e7e6e8;
+    background-image: url('profile_pics/background_pic.jpg');
+    background-position: center;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: medium;
     color: #333333;
     margin-top: 5rem;
   }
   
   h1, h2, h3, h4, h5, h6 {
+    font-size: 35px;
     color: #444444;
   }
   
   .bg-steel {
-    background-color: #12016f;
+    background-color: #0e034e;
   }
   
   .site-header .navbar-nav .nav-link {
-    color: hsl(257, 30%, 95%);
+    color: hsl(260, 11%, 95%);
   }
   
   .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #cec8f2;
   }
   
   .site-header .navbar-nav .nav-link.active {
@@ -25,19 +30,19 @@ body {
   }
   
   .content-section {
-    background: #ffffff;
+    background: #ecf0f9;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
+    border: 1px solid #f8e6f4;
     border-radius: 3px;
     margin-bottom: 20px;
   }
   
   .article-title {
-    color: #121738;
+    color: #262627;
   }
   
   a.article-title:hover {
-    color: #1c255d;
+    color: #5a8af0;
     text-decoration: none;
   }
   
