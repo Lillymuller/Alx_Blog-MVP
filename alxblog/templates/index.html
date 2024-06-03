@@ -7,9 +7,43 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Our Alx-Blog</h1>
-        <p>Explore a world of captivating stories, informative articles, and engaging content.
-            Our blog covers a wide range of topics to keep you informed and entertained.</p>
+    <section class="info">
+        <h1>Alx-Blog</h1>
+        <p> "Connecting to the Alx world!"</p>
     </div>
+    </section>
+    <section class="features">
+        <div class="col-md-12">  <div class="feature">
+            <h2>Home Page</h2><br>
+            <img src="static/profile_pics/feature3.png" alt="Feature 3" width="800" height="500"><br><br>
+            <p>Welcome to the vibrant world of Alx Blog! Our captivating home page serves as your portal to a wealth of engaging content.
+              Dive into a curated selection of featured blog posts, explore trending topics,
+             from the latest to the oldest posts. Engage in meaningful discussions, and connect with a passionate community of writers
+             and readers. Get ready to discover, share, and be inspired on the Alx Blog home page!</p>
+          </div>
+        </div>
+        <div class="row">  <div class="col-md-12">  <div class="feature">
+              <h2>Registration Page</h2><br>
+              <img src="static/profile_pics/Feature1.png" alt="Feature 1" width="800" height="500"><br><br>
+              <p> Unleash your inner writer and join the Alx Blog community!
+                Our user-friendly registration page allows you to create an account in minutes.
+                Simply provide your username and email address, set a secure password,
+                and get started on crafting your blog. With registration, you can enjoy features like creating and publishing posts,
+                personalizing your blog, and connecting with other bloggers. Share your voice and connect with the world through Alx Blog!</p>
+            </div>
+          </div>
+          <div class="col-md-12">  <div class="feature">
+              <h2>Account Page</h2><br>
+              <img src="static/profile_pics/feature2.png" alt="Feature 2" width="800" height="500"><br><br>
+              <p>The Alx Blog Account page puts you in control of your blogging experience.
+                Edit your profile information, manage your published blog posts, and fine-tune your settings.
+                Easily access and update your username, email and avatar. View a comprehensive list of your posts,
+                and utilize edit, delete options as needed.The Account page empowers you to manage your blog content
+                and personalize your Alx Blog journey.</p>
+            </div>
+            <a href="{{ url_for('home')}}" class="btn btn-primary btn-sm">Start Blogging Today!</a><br><br>
+          </div>
+        </div>
+      </section>      
 </body>
 {% endblock content %}
