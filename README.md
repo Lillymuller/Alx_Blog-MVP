@@ -1,6 +1,6 @@
 ##  ✨ ALX-Blog App ✨ 
 
-** [(https://imgur.com/lK6BQDU)] **  
+**[Imagen of a blog post with a computer screen and a notebook] (https://imgur.com/lK6BQDU)**  
 A user-friendly blog web application for Alx Students and Mentors to create and publish engaging content. 
 
 **Features:**
