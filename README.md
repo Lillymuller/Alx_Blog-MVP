@@ -10,9 +10,13 @@ Alx Blog App is a web application that allows students and mentors to create and
 It is designed to be easy to use and intuitive, with a clean and modern look and feel.
 
 **Inspiration ➡️✍️**
+
+
 Our inspiration came from the different platforms that we used throughout this program. We used platforms like linkedin, and Medium  to write a blog or an article, also Discord for the day to day communication with our peers and Mentors.  Based on this experience we wanted to create an Alx-Blog platform for Alx  Students and Mentors where they can share, express and discuss  new idea, articles, technologies and experiences.
 
 **Challenges Conquered ⚔️**
+
+
 1.Flask Security Concerns: Flask-WTF & Flask-Security
 2.Python3 Secret: Secrets Module
 3.Database(Table couldn’t be created): Flask-SQLAlchemy 3.0 all access to db.engine (db.session) requires an active Flask application context.

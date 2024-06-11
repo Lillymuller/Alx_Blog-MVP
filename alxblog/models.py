@@ -9,10 +9,12 @@ from flask_mail import Message
 
 @login_manager.user_loader
 def loader_user(user_id):
+    """Gives us all the posts through post Id"""
     return User.query.get(int(user_id))
 
 
 class User(db.Model, UserMixin):
+    """Creating a User table with the diffrent columns"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
@@ -21,6 +23,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
+        """Reseting Pasword through a given token in your email"""
         payload = {'user_id': self.id}
 
         encoded_jwt = jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')
@@ -43,6 +46,7 @@ class User(db.Model, UserMixin):
     
 
 class Post(db.Model):
+    """Creating a table for Post with diffrent columns"""
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -54,6 +58,7 @@ class Post(db.Model):
 
 @app.cli.command('initdb')
 def initdb_command():
+    """Creating a app context inorder to access the database"""
     with app.app_context():
         db.create_all()
         session = db.session

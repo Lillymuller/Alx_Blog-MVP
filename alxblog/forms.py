@@ -7,6 +7,7 @@ from alxblog.models import User
 
 
 class RegistrationForm(FlaskForm):
+    """ Creating the registration form for a new user """
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
@@ -17,17 +18,20 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
+        """Validating the username with the database stored username"""
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('The username already exists')
         
     def validate_email(self, email):
+        """Validating the useremail with the database stored useremail"""
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('The email already exists')
 
 
 class LoginForm(FlaskForm):
+    """ A registered user can login using email and Password"""
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -36,6 +40,7 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
+    """A registered user can edit account info and add account picture"""
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
@@ -57,12 +62,14 @@ class UpdateAccountForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
+    """A user can create a content giving a title"""
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 
 class RequestResetForm(FlaskForm):
+    """A user can reset a password through email"""
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
@@ -74,6 +81,7 @@ class RequestResetForm(FlaskForm):
 
 
 class ResetPasswordForm(FlaskForm):
+    """User reseting a password"""
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
