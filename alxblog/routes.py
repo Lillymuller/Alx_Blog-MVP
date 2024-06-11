@@ -11,11 +11,13 @@ from flask_mail import Message
 
 @app.route("/")
 def landing_page():
+    """A route that take us to the landing page """
     return render_template('index.html')
 
 
 @app.route("/home")
 def home():
+    """A route that take us to the home page""" 
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', posts=posts, title='Home')
@@ -23,11 +25,13 @@ def home():
 
 @app.route("/about")
 def about():
+    """A route that take us to the about page """
     return render_template('about.html', title='About')
 
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    """This route take as to the registration page"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -43,6 +47,7 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    """This route take as to the login page"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -59,11 +64,13 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """This route take as to the logout page"""
     logout_user()
     return redirect(url_for('home'))
 
 
 def save_picture(form_picture):
+    """This make sure the uploaded picturein user account  is saved on the database"""
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)    
     pics_file = random_hex + f_ext
@@ -80,6 +87,7 @@ def save_picture(form_picture):
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+    """This route take as to the account page"""
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -100,6 +108,7 @@ def account():
 @app.route("/post/new", methods=['GET', 'POST'])
 @login_required
 def new_post():
+    """This route take as to the New Post page where you can creat a post"""
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
@@ -112,6 +121,7 @@ def new_post():
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
+    """This route take us to a specific post using the Post_id"""
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
 
@@ -119,6 +129,7 @@ def post(post_id):
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
+    """This route is used to update existing Post """
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -138,6 +149,7 @@ def update_post(post_id):
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
 def delete_post(post_id):
+    """This route is used to delete an existing Post"""
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
@@ -149,6 +161,7 @@ def delete_post(post_id):
 
 @app.route("/user/<string:username>")
 def user_posts(username):
+    """This route is used to fetch Posts of a specific User through Username"""
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user)\
@@ -157,6 +170,7 @@ def user_posts(username):
     return render_template('user_posts.html', posts=posts, user=user)
 
 def send_reset_email(user):
+    """Sending a rest password email to your email address with a token for reset"""
     token = user.get_reset_token()
     msg = Message('Password Reset Request',
                   sender='noreply@demo.com',
@@ -171,6 +185,7 @@ If you did not make this request then simply ignore this email and no changes wi
 
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
+    """For asking a password rest for a registerd user"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
@@ -184,6 +199,7 @@ def reset_request():
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
+    """Sends a token for reseting the password through users email account"""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
