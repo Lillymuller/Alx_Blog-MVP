@@ -18,9 +18,13 @@ Our inspiration came from the different platforms that we used throughout this p
 
 
 1.Flask Security Concerns: Flask-WTF & Flask-Security
+
 2.Python3 Secret: Secrets Module
+
 3.Database(Table couldn’t be created): Flask-SQLAlchemy 3.0 all access to db.engine (db.session) requires an active Flask application context.
+
 4.Unable to identify routes location: we used the Flask helper function url_for to find the exact location of routes.
+
 5.Password and User Information vulnerability: we used Flask-WTF method called form.hidden_tag() to hide the fields value on the form. 
 
 **The Takeaway: More Than Code ❤️**
