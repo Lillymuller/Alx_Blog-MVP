@@ -17,6 +17,44 @@
       <p class="article-content">{{ post.content }}</p>
     </div>
   </article>
+  <div class="card mt-4">
+    <div class="card-header">
+    <h2> Add Comment</h2>
+    </div>
+    
+    <div class="card-body">
+      <ul class="list-unstyled">
+        <form method="POST" action="{{ url_for('comments', post_id=post.id) }}">
+          <input class="form-control" type="text" name="title" placeholder="title comment..." required>
+          </br>
+          <textarea class="form-control" type="text" name="content" placeholder="Your comment..." required></textarea>
+          </br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form> 
+      </br>
+        <small class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#commentsSection" aria-expanded="false" aria-controls="commentsSection">
+          View Comments
+        </small>
+        <div class="collapse" id="commentsSection">
+          {% for comment in comments %}
+              <li class="mb-3">
+                  <strong>{{ comment.title }}</strong> <br>
+                 <small class="text-muted"> <em>{{ comment.user.username }}</em> on {{ comment.date_posted.strftime('%Y-%m-%d %H:%M') }} </small>
+                  <p>{{ comment.content }}</p>
+                  {% if current_user.id == comment.user_id %}
+                  <a href="{{ url_for('edit_comment', comment_id=comment.id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                  <form method="POST" action="{{ url_for('delete_comment', comment_id=comment.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this comment?');">Delete</button>
+                  </form>
+                  {% endif %}
+                </li>
+          {% else %}
+            <li>No comments yet.</li>
+          {% endfor %}
+          </ul> 
+      </div>
+    </div>
+</div>
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

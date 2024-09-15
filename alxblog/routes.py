@@ -4,7 +4,7 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from alxblog import app, db, bcrypt, mail
 from alxblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
-from alxblog.models import User, Post
+from alxblog.models import User, Post, Comment
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
@@ -123,7 +123,8 @@ def new_post():
 def post(post_id):
     """This route take us to a specific post using the Post_id"""
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.date_posted.desc()).all()
+    return render_template('post.html', title=post.title, post=post, comments=comments)
 
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
@@ -168,6 +169,65 @@ def user_posts(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
+
+
+@app.route("/post/<int:post_id>/comments", methods=['GET', 'POST'])
+@login_required
+def comments(post_id):
+    """Route to handle comments for a specific post."""
+    post = Post.query.get_or_404(post_id)
+    
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        if current_user.is_authenticated:
+            user_id = current_user.id
+        else:
+            flash('You must be logged in to comment.', 'danger')
+            return redirect(url_for('post', post_id=post_id))   
+
+        new_comment = Comment(title=title, content=content, user_id=user_id, post_id=post_id)
+        
+        db.session.add(new_comment)
+        db.session.commit()
+        
+        flash('Your comment has been added!', 'success')
+        return redirect(url_for('comments', post_id=post_id))
+    
+    comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.date_posted.desc()).all()
+    return render_template('post.html', title=post.title, post=post, comments=comments)
+
+
+@app.route('/edit_comment/<int:comment_id>', methods=['GET', 'POST'])
+@login_required
+def edit_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if comment.user_id != current_user.id:
+        abort(403)  # Forbidden if the user is not the owner
+
+    if request.method == 'POST':
+        comment.title = request.form['title']
+        comment.content = request.form['content']
+        db.session.commit()
+        flash('Comment updated successfully!', 'success')
+        return redirect(url_for('post', post_id=comment.post_id))
+
+    return render_template('edit_comment.html', comment=comment)
+
+
+@app.route('/delete_comment/<int:comment_id>', methods=['POST'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if comment.user_id != current_user.id:
+        abort(403)  # Forbidden if the user is not the owner
+
+    db.session.delete(comment)
+    db.session.commit()
+    flash('Comment deleted successfully!', 'success')
+    return redirect(url_for('post', post_id=comment.post_id))
+
 
 def send_reset_email(user):
     """Sending a rest password email to your email address with a token for reset"""
@@ -214,3 +274,5 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+

@@ -1,85 +1,234 @@
 body {
-    background-image: url('profile_pics/background_pic.jpg');
-    background-position: center;
-    background-size: cover;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: medium;
-    color: #333333;
-    margin-top: 5rem;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 35px;
-    color: #444444;
-  }
-  
-  .bg-steel {
-    background-color: #0e034e;
-  }
-  
-  .site-header .navbar-nav .nav-link {
-    color: hsl(260, 11%, 95%);
-  }
-  
-  .site-header .navbar-nav .nav-link:hover {
-    color: #cec8f2;
-  }
-  
-  .site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-  }
-  
-  .content-section {
-    background: #ecf0f9;
-    padding: 10px 20px;
-    border: 1px solid #f8e6f4;
-    border-radius: 3px;
-    margin-bottom: 20px;
-  }
-  
-  .article-title {
-    color: #262627;
-  }
-  
-  a.article-title:hover {
-    color: #5a8af0;
-    text-decoration: none;
-  }
-  
-  .article-content {
-    white-space: pre-line;
-  }
-  
-  .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-  }
-  
-  .article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-  }
-  
-  .article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-  }
-  
-  .account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-  }
-  
-  .account-heading {
-    font-size: 2.5rem;
-  }
+  background: #fafafb;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  color: #333333;
+  margin-top: 5rem;
+  transition: background 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 35px;
+  color: #444444;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.bg-steel {
+  background-color: #0b023d;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.site-header .navbar-nav .nav-link {
+  color: hsl(260, 11%, 95%);
+  transition: color 0.3s ease;
+}
+.site-header .navbar-nav .nav-link:hover {
+  color: #cec8f2;
+  text-shadow: 0 0 5px #fff;
+}
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.content-section {
+  background: #dde3f0;
+  padding: 20px;
+  border: 1px solid #f8e6f4;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.content-section:hover {
+  transform: scale(1.02);
+}
+
+.article-title {
+  color: #262627;
+  font-weight: bold;
+}
+
+a.article-title:hover {
+  color: #5a8af0;
+  text-decoration: none;
+  text-shadow: 0 0 5px #fff;
+}
+
+.article-content {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+  border-radius: 50%;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.article-metadata a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.about-page {
+  padding: 20px;
+  background-color: #dde3f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.about-page h1, .about-page h2 {
+  color: #0b023d;
+}
+.about-page .team-members {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+.about-page .team-members .team-member {
+  text-align: center;
+  margin: 10px;
+}
+.about-page .team-members .team-member h3 {
+  margin: 10px 0 5px;
+}
+.about-page .team-members .team-member ul {
+  list-style: none;
+  padding: 0;
+}
+.about-page .team-members .team-member ul li {
+  margin: 5px 0;
+}
+.about-page .team-members .team-member a {
+  color: #5a8af0;
+  text-decoration: none;
+}
+.about-page .team-members .team-member a:hover {
+  text-decoration: underline;
+}
+.about-page .team-members .team-member .team-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  background-color: #ccd7f1;
+  border: 1px solid #fafafb;
+  border-radius: 10px;
+  transition: background 0.5s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card-header {
+  background-color: #dde3f0;
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.card-body {
+  padding: 20px;
+}
+.card-body .form-control {
+  border: 1px solid #fafafb;
+  border-radius: 0.25rem;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+}
+.card-body .form-control:focus {
+  border-color: #0b023d;
+  box-shadow: 0 0 5px rgba(11, 2, 61, 0.5);
+}
+.card-body button {
+  width: 70px;
+  padding: 10px;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+.card-body button.btn-primary {
+  background-color: blue;
+  border: none;
+}
+.card-body button.btn-primary:hover {
+  background-color: darkblue;
+}
+.card-body button.btn-secondary {
+  background-color: blue;
+  border: none;
+}
+.card-body button.btn-secondary:hover {
+  background-color: #dedee4;
+}
+.card-body button.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+.card-body button.btn-danger:hover {
+  background-color: #bd2130;
+}
+.card-body small.btn-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.card-body small.btn-link:hover {
+  -webkit-text-decoration: darkblue;
+          text-decoration: darkblue;
+}
+.card-body .collapse {
+  margin-top: 15px;
+}
+.card-body .collapse li {
+  padding: 10px;
+  border-bottom: 1px solid #fafafb;
+}
+.card-body .collapse li strong {
+  color: #333333;
+}
+.card-body .collapse li small.text-muted {
+  display: block;
+  margin-bottom: 5px;
+}
+.card-body .collapse li p {
+  margin: 5px 0;
+  color: #333333;
+}
+.card-body .collapse li:last-child {
+  border-bottom: none;
+}/*# sourceMappingURL=main.css.map */

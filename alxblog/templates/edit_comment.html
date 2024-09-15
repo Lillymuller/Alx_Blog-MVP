@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST">
+    <input class="form-control" type="text" name="title" value="{{ comment.title }}" required>
+    <br>
+    <textarea class="form-control" name="content" required>{{ comment.content }}</textarea>
+    <br>
+    <button type="submit" class="btn btn-primary">Update Comment</button>
+</form>
+{% endblock content %}

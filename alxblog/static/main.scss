@@ -1,0 +1,282 @@
+$primary-color: #0b023d;
+$secondary-color: #fafafb;
+$text-color: #333333;
+$hover-color: #5a8af0;
+$light-bg: #dde3f0;
+$dark-bg: #1a1a2e;
+$border-color: #f8e6f4;
+
+body {
+  background: $secondary-color;
+  font-family: 'Roboto', sans-serif; // Modern font
+  font-size: medium;
+  color: $text-color;
+  margin-top: 5rem;
+  transition: background 0.5s ease; // Smooth transition for background
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 35px;
+  color: #444444;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); // Subtle shadow for depth
+}
+
+.bg-steel {
+  background-color: $primary-color;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Shadow for depth
+}
+
+.site-header {
+  .navbar-nav {
+    .nav-link {
+      color: hsl(260, 11%, 95%);
+      transition: color 0.3s ease; // Smooth color transition
+
+      &:hover {
+        color: #cec8f2;
+        text-shadow: 0 0 5px #fff; // Glow effect on hover
+      }
+
+      &.active {
+        font-weight: 500;
+        text-decoration: underline; // Underline for active links
+      }
+    }
+  }
+}
+
+.content-section {
+  background: $light-bg;
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 10px; // Rounded corners for a modern look
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Light shadow for depth
+  transition: transform 0.3s ease; // Smooth scaling effect
+
+  &:hover {
+    transform: scale(1.02); // Slightly enlarge on hover
+  }
+}
+
+.article-title {
+  color: #262627;
+  font-weight: bold; // Bold title for emphasis
+}
+
+a.article-title:hover {
+  color: $hover-color;
+  text-decoration: none;
+  text-shadow: 0 0 5px #fff; // Glow effect on hover
+}
+
+.article-content {
+  white-space: pre-line;
+  line-height: 1.6; // Improved readability
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+  border-radius: 50%; // Circular images for a modern look
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.article-metadata a:hover {
+  color: $text-color;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+  border-radius: 50%; // Circular account images
+}
+
+.account-heading {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); // Shadow for depth
+}
+.about-page {
+    padding: 20px;
+    background-color: $light-bg; // Use your defined light background color
+    border-radius: 10px; // Rounded corners for a modern look
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Light shadow for depth
+  
+    h1, h2 {
+      color: $primary-color; // Use your primary color for headings
+    }
+  
+    .team-members {
+      display: flex;
+      justify-content: space-around; // Space out team members
+      margin: 20px 0;
+  
+      .team-member {
+        text-align: center; // Center align text
+        margin: 10px;
+  
+        h3 {
+          margin: 10px 0 5px; // Spacing for names
+        }
+  
+        ul {
+          list-style: none; // Remove bullet points
+          padding: 0; // Remove padding
+  
+          li {
+            margin: 5px 0; // Spacing for links
+          }
+        }
+  
+        a {
+          color: $hover-color; // Use hover color for links
+          text-decoration: none; // Remove underline
+  
+          &:hover {
+            text-decoration: underline; // Underline on hover
+          }
+        }
+  
+        .team-img {
+          width: 100px; // Set a fixed width for images
+          height: 100px; // Set a fixed height for images
+          border-radius: 50%; // Circular images for a modern look
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Shadow for depth
+        }
+      }
+    }
+  }
+  $background-color: #ccd7f1;
+  $comment-header: $light-bg;
+  $submitbutton: blue;
+  $submit-hover: darkblue;
+  $border-radius: 0.25rem;
+  
+  .card {
+      background-color: $background-color;
+      border: 1px solid $secondary-color;
+      border-radius: 10px;
+      transition: background 0.5s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-bottom: 30px;
+  
+      &:hover {
+          transform: scale(1.02); // Slightly enlarge on hover
+      }
+  
+      &-header {
+          background-color: $comment-header;
+          color: white;
+          padding: 15px;
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+  
+          h2 {
+              margin: 0;
+              font-size: 1.5rem;
+          }
+      }
+  
+      &-body {
+          padding: 20px;
+  
+          .form-control {
+              border: 1px solid $secondary-color;
+              border-radius: $border-radius;
+              margin-bottom: 15px;
+              transition: border-color 0.3s;
+  
+              &:focus {
+                  border-color: $primary-color;
+                  box-shadow: 0 0 5px rgba($primary-color, 0.5);
+              }
+          }
+  
+          button {
+              width: 70px; // Set a consistent width for all buttons
+              padding: 10px; // Ensure consistent padding
+              border-radius: $border-radius;
+              transition: background-color 0.3s;
+  
+              &.btn-primary {
+                  background-color: $submitbutton;
+                  border: none;
+  
+                  &:hover {
+                      background-color: $submit-hover;
+                  }
+              }
+  
+              &.btn-secondary {
+                  background-color: $submitbutton;
+                  border: none;
+  
+                  &:hover {
+                      background-color: darken($secondary-color, 10%);
+                  }
+              }
+  
+              &.btn-danger {
+                  background-color: #dc3545;
+                  border: none;
+  
+                  &:hover {
+                      background-color: darken(#dc3545, 10%);
+                  }
+              }
+          }
+  
+          small.btn-link {
+              color: $submitbutton;
+              cursor: pointer;
+              text-decoration: underline;
+  
+              &:hover {
+                  text-decoration: $submit-hover;
+              }
+          }
+  
+          .collapse {
+              margin-top: 15px;
+  
+              li {
+                  padding: 10px;
+                  border-bottom: 1px solid $secondary-color;
+  
+                  strong {
+                      color: $text-color;
+                  }
+  
+                  small.text-muted {
+                      display: block;
+                      margin-bottom: 5px;
+                  }
+  
+                  p {
+                      margin: 5px 0;
+                      color: $text-color;
+                  }
+              }
+  
+              li:last-child {
+                  border-bottom: none;
+              }
+          }
+      }
+  }
