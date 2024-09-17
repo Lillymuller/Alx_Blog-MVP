@@ -1,5 +1,6 @@
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 from alxblog import db, app, login_manager
 from flask_login import UserMixin
 from flask import cli, request, jsonify
@@ -25,21 +26,22 @@ class User(db.Model, UserMixin):
 
     def get_reset_token(self, expires_sec=1800):
         """Reseting Pasword through a given token in your email"""
-        payload = {'user_id': self.id}
+        payload = {'user_id': self.id, 'exp': datetime.utcnow() + timedelta(seconds=expires_sec)}
 
         encoded_jwt = jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')
         return encoded_jwt
     
     @staticmethod
     def verify_reset_token(token):
+        """ Verfing Reset token is valid or not"""
         try:
-            decoded_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithm='HS256')
+            decoded_payload = jwt.decode(token, app.config['SECRET_KEY'], algorithm=['HS256'])
             user_id = decoded_payload['user_id']
-            return jsonify({'user_id': user_id})
+            return jsonify({'user_id': user_id}), 200
         except jwt.ExpiredSignatureError:
-            return jsonify({'error': 'Token has expired'})
+            return jsonify({'error': 'Token has expired'}), 401
         except (jwt.InvalidTokenError, jwt.DecodeError):
-            return jsonify({'error': 'Invalid token'})
+            return jsonify({'error': 'Invalid token'}), 401
 
     
     def __repr__(self):
